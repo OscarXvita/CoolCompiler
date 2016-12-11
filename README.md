@@ -33,7 +33,8 @@ In order to use tools need for COOL. A Linux Environment is highly suggested.
 Due to the complexity of getting all the needed tools installed correctly, we provide a pre-configured Linux 
 system via VirtualBox VM.
 
-VirtualBox allows you to install the VM on your own computer. Instructions on setting up VirtualBox are available [#here#]https://class.stanford.edu/courses/Engineering/Compilers/Fall2014/7b74698308574f3c89d2ed498f26a019/.
+VirtualBox allows you to install the VM on your own computer. Instructions on setting up VirtualBox are available 
+[#here#]:https://class.stanford.edu/courses/Engineering/Compilers/Fall2014/7b74698308574f3c89d2ed498f26a019/ "Click to Download"
 
 Once the VM is set up, you can compile the example programs. 
 Once the assignments become available, you will be able to work on these inside the VM as well.
