@@ -8,7 +8,7 @@ Co-Developed by Oscar Li, Kelukin Lau, Sunny Xiao.
 ### About Cool Language 
 Cool the Classroom Object Oriented Language, is a small programming language for teaching the basics of compiler construction to undergraduate computer science majors.  
 
-Cool is designed to be implemented by individuals or teams of two using C++ [Str91] in a Unix environment in a single semester. 
+Cool is designed to be implemented by individuals or teams of two using C++ [Str91] in a Unix environment in a single semester.
 At Berkeley, 80% - 90% of the student teams complete the pro ject each semester. 
 The project has been designed to be relatively easy to modify so shorter or longer pro jects are possible. 
 
@@ -37,7 +37,7 @@ system via VirtualBox VM.
 VirtualBox allows you to install the VM on your own computer. 
 
 Instructions on setting up VirtualBox are available 
-[here](https://class.stanford.edu/courses/Engineering/Compilers/Fall2014/7b74698308574f3c89d2ed498f26a019/ "Click to Download")
+*[here](https://class.stanford.edu/courses/Engineering/Compilers/Fall2014/7b74698308574f3c89d2ed498f26a019/ "Click to Download")*.
 
 Once the VM is set up, you can compile the example programs. 
 Once the assignments become available, you will be able to work on these inside the VM as well.
