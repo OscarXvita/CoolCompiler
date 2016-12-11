@@ -2,6 +2,7 @@
 Yet another COOL Compiler Project. 
 
 Co-Developed by Oscar Li, Kelukin Lau, Sunny Xiao.
+
 ## Know Before you start
 
 ### About Cool Language 
@@ -33,7 +34,9 @@ In order to use tools need for COOL. A Linux Environment is highly suggested.
 Due to the complexity of getting all the needed tools installed correctly, we provide a pre-configured Linux 
 system via VirtualBox VM.
 
-VirtualBox allows you to install the VM on your own computer. Instructions on setting up VirtualBox are available 
+VirtualBox allows you to install the VM on your own computer. 
+
+Instructions on setting up VirtualBox are available 
 [here](https://class.stanford.edu/courses/Engineering/Compilers/Fall2014/7b74698308574f3c89d2ed498f26a019/ "Click to Download")
 
 Once the VM is set up, you can compile the example programs. 
