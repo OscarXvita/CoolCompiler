@@ -46,7 +46,7 @@ Compiler project usually are divided into 4 assignments:
 3.  Semanic Analysis
 4.  Code Generation
 
-## Tools And Environment   <a name="tool"></a>
+## 2. Tools And Environment   <a name="tool"></a>
 
 * FLex/JLex
 * Yacc
