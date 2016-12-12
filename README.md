@@ -14,9 +14,17 @@ Co-Developed by Oscar Li, Kelukin Lau, Sunny Xiao.
 
     2.1 [Download Preconfigured VM](#dpvm)
     
-    2.2 
+    2.2 [Environment Test](#ents)
 
+3. [Appendix](#appe) 
     
+    3.1 [VirtualBox VM setup](#vmsu)
+    
+    3.2 [Getting VirtualBox](#gtvb)
+    
+    3.3 [Getting our VM image](#gtvm)
+
+    3.4 [Using the VM](#usvm)
 
 ## 1. Know Before you start <a name="know"></a>
 
@@ -54,6 +62,7 @@ system via VirtualBox VM.
 
 VirtualBox allows you to install the VM on your own computer. 
 
+### Environment Test <a name="ents"></a>
 
 Once the VM is set up, you can compile the example programs. 
 Once the assignments become available, you will be able to work on these inside the VM as well.
@@ -80,7 +89,7 @@ For example, to compile and run "hello_world.cl", run in a terminal (where $ rep
     Stats -- #instructions : 152
              #reads : 27  #writes 22  #branches 28  #other 75
              
-## 3. Appendix
+## 3. Appendix <a name="appe"></a>
 ### VirtualBox VM setup <a name="vmsu"></a>
 
 If you have not used a VM before, the idea is that you will be running an entire operating system inside a program (VirtualBox) that looks to the virtual guest operating system like real hardware. We provide a downloadable image of the guest OS with everything installed, so that you only need to do minimal setup to get started.
@@ -98,7 +107,7 @@ Note that since a VM contains a whole second operating system, the system requir
 *   Unzip the file into a convenient directory. The unzipped files are about 2GB, so make sure you have enough disk space available. If you are a Windows XP user and have trouble opening the zip file, try WinZip (shareware) or 7-Zip (free, open source) instead of the built-in zip support in Windows.
 *   Once you have unzipped the VM, double-click on the file "Compilers.vbox". This should open the VM in VirtualBox.
 
-**Using the VM**
+**Using the VM** <a name="usvm"></a>
 
 *   **The provided account is "compilers" and the password is "cool"**.
 *   To start the VM, click the green "Start" button. This should make the VM boot.
@@ -107,5 +116,3 @@ Note that since a VM contains a whole second operating system, the system requir
 *   To get a terminal, click on the terminal icon at the bottom of the screen. This should get you to the point where you can start the assignments.
 
 This VM is based on Bodhi Linux, which is itself based on the popular linux distribution Ubuntu. We used Bodhi Linux in order to keep the download size more manageable, since a full Ubuntu install is quite large. However, since it is based on Ubuntu, most Ubuntu software packages can be installed on Bodhi Linux as well.
-
-If you have a problem that you cannot solve, please post in the course's [Discussion forums](https://class.stanford.edu/courses/Engineering/Compilers/Fall2014/discussion/forum). &nbsp;This course is unmoderated, so your best resource in this course will be the documentation, the video lectures, and fellow class participants in the Discussion forums.&nbsp;
