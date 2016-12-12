@@ -8,7 +8,7 @@ Co-Developed by Oscar Li, Kelukin Lau, Sunny Xiao.
 
     1.1 [About Cool Language](#abcl)
     
-    1.2 [About This Project](#abcl)
+    1.2 [About This Project](#abtp)
    
 2. [Tools and Environment](#tool)
 
