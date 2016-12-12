@@ -46,23 +46,27 @@ Compiler project usually are divided into 4 assignments:
 3.  Semanic Analysis
 4.  Code Generation
 
-## 2. Tools And Environment   <a name="tool"></a>
+<a name="tool"></a>
+## 2. Tools And Environment  
 
 * FLex/JLex
 * Yacc
 
-### Download Preconfigured VM  <a name="dpvm"></a>
+<a name="dpvm"></a>
+### Download Preconfigured VM  
 
 In order to use tools need for COOL. A Linux Environment is highly suggested. 
 Due to the complexity of getting all the needed tools installed correctly, we provide a pre-configured Linux 
 system via VirtualBox VM. 
 
-[**DownLoad Pre-configured VM here**](https://s3-us-west-1.amazonaws.com/prod-edx/Compilers/VM/compilers-vm.zip)
-[**DownLoad VirtualBox here**](https://www.virtualbox.org/wiki/Downloads)
+[**Click here to downLoad Pre-configured VM.**](https://s3-us-west-1.amazonaws.com/prod-edx/Compilers/VM/compilers-vm.zip)
+
+[**Click here to downLoad VirtualBox.**](https://www.virtualbox.org/wiki/Downloads)
 
 VirtualBox allows you to install the VM on your own computer. 
 
-### Environment Test <a name="ents"></a>
+<a name="ents"></a>
+### Environment Test 
 
 Once the VM is set up, you can compile the example programs. 
 Once the assignments become available, you will be able to work on these inside the VM as well.
@@ -89,25 +93,31 @@ For example, to compile and run "hello_world.cl", run in a terminal (where $ rep
     Stats -- #instructions : 152
              #reads : 27  #writes 22  #branches 28  #other 75
              
-## 3. Appendix <a name="appe"></a>
-### VirtualBox VM setup <a name="vmsu"></a>
+<a name="appe"></a>
+## 3. Appendix
+
+<a name="vmsu"></a>
+### VirtualBox VM setup 
 
 If you have not used a VM before, the idea is that you will be running an entire operating system inside a program (VirtualBox) that looks to the virtual guest operating system like real hardware. We provide a downloadable image of the guest OS with everything installed, so that you only need to do minimal setup to get started.
 
 Note that since a VM contains a whole second operating system, the system requirements are high. **The VM will take a bit over 512MB of ram (so you will probably want to have 2GB of total ram to keep Windows or Mac OS X running smoothly), plus a bit over 2GB of hard disk space.**
 
-**Getting VirtualBox** <a name="gtvb"></a>
+<a name="gtvb"></a>
+**Getting VirtualBox** 
 
 *   First, download Oracle's VirtualBox, either from the VirtualBox website at [https://www.virtualbox.org/wiki/Downloads](https://www.virtualbox.org/wiki/Downloads), or from Oracle's download page at [http://www.oracle.com/technetwork/server-storage/virtualbox/downloads/index.html](http://www.oracle.com/technetwork/server-storage/virtualbox/downloads/index.html). Choose the version for the operating system you are running on your computer.
 *   Once the download completes, run the installer to install VirtualBox. You will need administrator access on your computer to do so.
 
-**Getting our VM image** <a name="gtvm"></a>
+<a name="gtvm"></a>
+**Getting our VM image** 
 
 *   Download our linux virtual machine image [here](https://s3-us-west-1.amazonaws.com/prod-edx/Compilers/VM/compilers-vm.zip), or if you have a BitTorrent client installed, you can use the torrent [here](http://spark-university.s3.amazonaws.com/stanford-compilers/vm/compilers-vm.zip?torrent). Note that this download is approximately 750MB.
 *   Unzip the file into a convenient directory. The unzipped files are about 2GB, so make sure you have enough disk space available. If you are a Windows XP user and have trouble opening the zip file, try WinZip (shareware) or 7-Zip (free, open source) instead of the built-in zip support in Windows.
 *   Once you have unzipped the VM, double-click on the file "Compilers.vbox". This should open the VM in VirtualBox.
 
-**Using the VM** <a name="usvm"></a>
+<a name="usvm"></a>
+**Using the VM** 
 
 *   **The provided account is "compilers" and the password is "cool"**.
 *   To start the VM, click the green "Start" button. This should make the VM boot.
