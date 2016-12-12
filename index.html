@@ -1,25 +1,37 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Coolcompiler by OscarXvita</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">Coolcompiler</h1>
-      <h2 class="project-tagline">Yet another COOL Compiler Project.</h2>
-      <a href="https://github.com/OscarXvita/CoolCompiler" class="btn">View on GitHub</a>
-      <a href="https://github.com/OscarXvita/CoolCompiler/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/OscarXvita/CoolCompiler/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
+<html>
 
-    <section class="main-content">
-      <h1>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Coolcompiler : Yet another COOL Compiler Project.">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Coolcompiler</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/OscarXvita/CoolCompiler">View on GitHub</a>
+
+          <h1 id="project_title">Coolcompiler</h1>
+          <h2 id="project_tagline">Yet another COOL Compiler Project.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/OscarXvita/CoolCompiler/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/OscarXvita/CoolCompiler/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
 <a id="coolcompiler" class="anchor" href="#coolcompiler" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>CoolCompiler</h1>
 
 <p>Yet another COOL Compiler Project. </p>
@@ -27,10 +39,43 @@
 <p>Co-Developed by Oscar Li, Kelukin Lau, Sunny Xiao.</p>
 
 <h2>
-<a id="know-before-you-start" class="anchor" href="#know-before-you-start" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Know Before you start</h2>
+<a id="contents" class="anchor" href="#contents" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contents</h2>
+
+<ol>
+<li>
+<p><a href="#know">Know Before you start</a></p>
+
+<p>1.1 <a href="#abcl">About Cool Language</a></p>
+
+<p>1.2 <a href="#abcl">About This Project</a></p>
+</li>
+<li>
+<p><a href="#tool">Tools and Environment</a></p>
+
+<p>2.1 <a href="#dpvm">Download Preconfigured VM</a></p>
+
+<p>2.2 <a href="#ents">Environment Test</a></p>
+</li>
+<li>
+<p><a href="#appe">Appendix</a> </p>
+
+<p>3.1 <a href="#vmsu">VirtualBox VM setup</a></p>
+
+<p>3.2 <a href="#gtvb">Getting VirtualBox</a></p>
+
+<p>3.3 <a href="#gtvm">Getting our VM image</a></p>
+
+<p>3.4 <a href="#usvm">Using the VM</a></p>
+</li>
+</ol>
+
+<h2>
+<a id="1-know-before-you-start-" class="anchor" href="#1-know-before-you-start-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. Know Before you start <a name="know"></a>
+</h2>
 
 <h3>
-<a id="about-cool-language" class="anchor" href="#about-cool-language" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>About Cool Language</h3>
+<a id="about-cool-language-" class="anchor" href="#about-cool-language-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>About Cool Language <a name="abcl"></a>
+</h3>
 
 <p>Cool the Classroom Object Oriented Language, is a small programming language for teaching the basics of compiler construction to undergraduate computer science majors.  </p>
 
@@ -41,7 +86,8 @@ The project has been designed to be relatively easy to modify so shorter or long
 <p>In this paper, Cool refers both to the language and to the complete compiler project(of which the language is one part).</p>
 
 <h3>
-<a id="about-this-project" class="anchor" href="#about-this-project" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>About this project</h3>
+<a id="about-this-project-" class="anchor" href="#about-this-project-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>About this project <a name="abtp"></a>
+</h3>
 
 <p>Compiler project usually are divided into 4 assignments: </p>
 
@@ -52,8 +98,9 @@ The project has been designed to be relatively easy to modify so shorter or long
 <li> Code Generation</li>
 </ol>
 
-<h3>
-<a id="tools" class="anchor" href="#tools" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Tools</h3>
+<h2>
+<a id="2-tools-and-environment---" class="anchor" href="#2-tools-and-environment---" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2. Tools And Environment   <a name="tool"></a>
+</h2>
 
 <ul>
 <li>FLex/JLex</li>
@@ -61,16 +108,21 @@ The project has been designed to be relatively easy to modify so shorter or long
 </ul>
 
 <h3>
-<a id="download-preconfigured-vm" class="anchor" href="#download-preconfigured-vm" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Download Preconfigured VM</h3>
+<a id="download-preconfigured-vm--" class="anchor" href="#download-preconfigured-vm--" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Download Preconfigured VM  <a name="dpvm"></a>
+</h3>
 
 <p>In order to use tools need for COOL. A Linux Environment is highly suggested. 
 Due to the complexity of getting all the needed tools installed correctly, we provide a pre-configured Linux 
-system via VirtualBox VM.</p>
+system via VirtualBox VM. </p>
+
+<p><a href="https://s3-us-west-1.amazonaws.com/prod-edx/Compilers/VM/compilers-vm.zip"><strong>DownLoad Pre-configured VM here</strong></a>
+<a href="https://www.virtualbox.org/wiki/Downloads"><strong>DownLoad VirtualBox here</strong></a></p>
 
 <p>VirtualBox allows you to install the VM on your own computer. </p>
 
-<p>Instructions on setting up VirtualBox are available 
-<em><a href="https://class.stanford.edu/courses/Engineering/Compilers/Fall2014/7b74698308574f3c89d2ed498f26a019/" title="Click to Download">here</a></em>.</p>
+<h3>
+<a id="environment-test-" class="anchor" href="#environment-test-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Environment Test <a name="ents"></a>
+</h3>
 
 <p>Once the VM is set up, you can compile the example programs. 
 Once the assignments become available, you will be able to work on these inside the VM as well.</p>
@@ -78,8 +130,9 @@ Once the assignments become available, you will be able to work on these inside 
 <p>To play around with the example cool programs, make a directory and copy over one or more examples from the /usr/class/cs143/examples directory. </p>
 
 <p>These examples are the same as the ones posted on the website. 
-The coolc command will run the reference compiler to generate the assembly output (.s) file, which you can run using the spim simulator. 
-For example, to compile and run "hello_world.cl", run in a terminal (where $ represents the prompt):</p>
+The coolc command will run the reference compiler to generate the assembly output (.s) file, which you can run using the spim simulator. </p>
+
+<p>For example, to compile and run "hello_world.cl", run in a terminal (where $ represents the prompt):</p>
 
 <pre><code>$ mkdir examples
 $ cd examples
@@ -97,14 +150,56 @@ Stats -- #instructions : 152
          #reads : 27  #writes 22  #branches 28  #other 75
 </code></pre>
 
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/OscarXvita/CoolCompiler">Coolcompiler</a> is maintained by <a href="https://github.com/OscarXvita">OscarXvita</a>.</span>
+<h2>
+<a id="3-appendix-" class="anchor" href="#3-appendix-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3. Appendix <a name="appe"></a>
+</h2>
 
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+<h3>
+<a id="virtualbox-vm-setup-" class="anchor" href="#virtualbox-vm-setup-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>VirtualBox VM setup <a name="vmsu"></a>
+</h3>
+
+<p>If you have not used a VM before, the idea is that you will be running an entire operating system inside a program (VirtualBox) that looks to the virtual guest operating system like real hardware. We provide a downloadable image of the guest OS with everything installed, so that you only need to do minimal setup to get started.</p>
+
+<p>Note that since a VM contains a whole second operating system, the system requirements are high. <strong>The VM will take a bit over 512MB of ram (so you will probably want to have 2GB of total ram to keep Windows or Mac OS X running smoothly), plus a bit over 2GB of hard disk space.</strong></p>
+
+<p><strong>Getting VirtualBox</strong> <a name="gtvb"></a></p>
+
+<ul>
+<li>  First, download Oracle's VirtualBox, either from the VirtualBox website at <a href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a>, or from Oracle's download page at <a href="http://www.oracle.com/technetwork/server-storage/virtualbox/downloads/index.html">http://www.oracle.com/technetwork/server-storage/virtualbox/downloads/index.html</a>. Choose the version for the operating system you are running on your computer.</li>
+<li>  Once the download completes, run the installer to install VirtualBox. You will need administrator access on your computer to do so.</li>
+</ul>
+
+<p><strong>Getting our VM image</strong> <a name="gtvm"></a></p>
+
+<ul>
+<li>  Download our linux virtual machine image <a href="https://s3-us-west-1.amazonaws.com/prod-edx/Compilers/VM/compilers-vm.zip">here</a>, or if you have a BitTorrent client installed, you can use the torrent <a href="http://spark-university.s3.amazonaws.com/stanford-compilers/vm/compilers-vm.zip?torrent">here</a>. Note that this download is approximately 750MB.</li>
+<li>  Unzip the file into a convenient directory. The unzipped files are about 2GB, so make sure you have enough disk space available. If you are a Windows XP user and have trouble opening the zip file, try WinZip (shareware) or 7-Zip (free, open source) instead of the built-in zip support in Windows.</li>
+<li>  Once you have unzipped the VM, double-click on the file "Compilers.vbox". This should open the VM in VirtualBox.</li>
+</ul>
+
+<p><strong>Using the VM</strong> <a name="usvm"></a></p>
+
+<ul>
+<li>  <strong>The provided account is "compilers" and the password is "cool"</strong>.</li>
+<li>  To start the VM, click the green "Start" button. This should make the VM boot.</li>
+<li>  To shut down the VM, click on the round "Bodhi" button at the bottom left and click System. Then choose Power Off.</li>
+<li>  We have installed what you need to do the assignments, plus a few other programs, such as vim and emacs. If you want to install other packages, you can use the Aptitude graphical package manager (under the Bodhi menu-&gt;Applications-&gt;Preferences) or the apt-get command line tool. If you are not familiar with these, there are many tutorials online that you can find through a quick Google search.</li>
+<li>  To get a terminal, click on the terminal icon at the bottom of the screen. This should get you to the point where you can start the assignments.</li>
+</ul>
+
+<p>This VM is based on Bodhi Linux, which is itself based on the popular linux distribution Ubuntu. We used Bodhi Linux in order to keep the download size more manageable, since a full Ubuntu install is quite large. However, since it is based on Ubuntu, most Ubuntu software packages can be installed on Bodhi Linux as well.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Coolcompiler maintained by <a href="https://github.com/OscarXvita">OscarXvita</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
       </footer>
+    </div>
 
-    </section>
+    
 
-  
   </body>
 </html>
