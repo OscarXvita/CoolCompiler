@@ -11,7 +11,9 @@ Co-Developed by Oscar Li, Kelukin Lau, Sunny Xiao.
     1.2 [About This Project](#abtp)
    
 2. [Tools and Environment](#tool)
-
+    
+    2.0 [Resources](#res)
+    
     2.1 [Download Preconfigured VM](#dpvm)
     
     2.2 [Environment Test](#ents)
@@ -52,6 +54,20 @@ Compiler project usually are divided into 4 assignments:
 
 * FLex/JLex
 * Yacc
+
+<a name="res"></a>
+## Resources
+
+*   [Cool Reference Manual](materials/cool-manual.pdf)
+*   [Tour of the Cool Support Code](materials/cool-tour.pdf)
+*   [Flex Manual](http://flex.sourceforge.net/manual/)
+*   [JLex Manual](https://www.cs.princeton.edu/~appel/modern/java/JLex/current/manual.html)
+*   [Bison Manual](http://www.gnu.org/software/bison/manual/html_node/index.html)
+*   [CUP Manual](http://www2.cs.tum.edu/projects/cup/docs.php)
+*   [CUP Javadoc](javadoc/java_cup/index.html)
+*   [Cool AST Javadoc](javadoc/cool_ast/index.html)
+*   [Cool Runtime](materials/cool-runtime.pdf)
+*   [SPIM Manual](materials/SPIM_Manual.pdf)
 
 <a name="dpvm"></a>
 ### Download Preconfigured VM  
