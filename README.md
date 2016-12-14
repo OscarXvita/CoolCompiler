@@ -60,16 +60,16 @@ Compiler project usually are divided into 4 assignments:
 <a name="res"></a>
 ## Resources
 
-*   [Cool Reference Manual](materials/cool-manual.pdf)
-*   [Tour of the Cool Support Code](materials/cool-tour.pdf)
+*   [Cool Reference Manual](http://web.stanford.edu/class/cs143/materials/cool-manual.pdf)
+*   [Tour of the Cool Support Code](http://web.stanford.edu/class/cs143/materials/cool-tour.pdf)
 *   [Flex Manual](http://flex.sourceforge.net/manual/)
 *   [JLex Manual](https://www.cs.princeton.edu/~appel/modern/java/JLex/current/manual.html)
 *   [Bison Manual](http://www.gnu.org/software/bison/manual/html_node/index.html)
 *   [CUP Manual](http://www2.cs.tum.edu/projects/cup/docs.php)
-*   [CUP Javadoc](javadoc/java_cup/index.html)
-*   [Cool AST Javadoc](javadoc/cool_ast/index.html)
-*   [Cool Runtime](materials/cool-runtime.pdf)
-*   [SPIM Manual](materials/SPIM_Manual.pdf)
+*   [CUP Javadoc](http://web.stanford.edu/class/cs143/javadoc/java_cup/index.html)
+*   [Cool AST Javadoc](http://web.stanford.edu/class/cs143/javadoc/cool_ast/index.html)
+*   [Cool Runtime](http://web.stanford.edu/class/cs143/materials/cool-runtime.pdf)
+*   [SPIM Manual](http://web.stanford.edu/class/cs143/materials/SPIM_Manual.pdf)
 
 <a name="dpvm"></a>
 ### Download Preconfigured VM  
