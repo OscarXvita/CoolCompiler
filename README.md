@@ -28,6 +28,8 @@ Co-Developed by Oscar Li, Kelukin Lau, Sunny Xiao.
 
     3.4 [Using the VM](#usvm)
     
+    3.5 [Install on Linux](#isol)
+    
 <a name="know"></a>
 ## 1. Know Before you start 
 <a name="abcl"></a>
@@ -143,3 +145,44 @@ Note that since a VM contains a whole second operating system, the system requir
 *   To get a terminal, click on the terminal icon at the bottom of the screen. This should get you to the point where you can start the assignments.
 
 This VM is based on Bodhi Linux, which is itself based on the popular linux distribution Ubuntu. We used Bodhi Linux in order to keep the download size more manageable, since a full Ubuntu install is quite large. However, since it is based on Ubuntu, most Ubuntu software packages can be installed on Bodhi Linux as well.
+
+<a name="isol"></a>
+## Installing Directly on Linux
+
+**NOTE: We highly recommend using the VirtualBox VM.**
+
+However, there was enough demand that we are providing these instructions for people who want to run directly on their own installation of Linux. These instructions were tested with Ubuntu 11.10, but should work on similar (Debian-based) systems, and can be adapted for other distros.
+
+Steps:
+
+*   Install packages (If you only intend to use the C++ version, you don't need the jdk). For Ubuntu:
+
+    sudo apt-get install flex bison build-essential csh openjdk-6-jdk libxaw7-dev
+
+*   Make the /usr/class directory:
+
+    sudo mkdir /usr/class
+
+*   Make the directory owned by you:
+
+    sudo chown $USER /usr/class
+
+*   Go to /usr/class and download the tarball:
+
+    cd /usr/class
+
+    wget http://spark-university.s3.amazonaws.com/stanford-compilers/vm/student-dist.tar.gz
+
+*   Untar:
+
+    tar -xf student-dist.tar.gz
+
+If you want things exactly like the VM:
+
+*   Add a symlink to your home directory:
+
+    ln -s /usr/class/cs143/cool ~/cool
+
+*   Add the bin directory to your $PATH environment variable. If you are using bash, add to your .profile (or .bash_profile, etc. depending on your configuration; note that in Ubuntu have to log out and back in for this to take effect):
+
+    PATH=/usr/class/cs143/cool/bin:$PATH
