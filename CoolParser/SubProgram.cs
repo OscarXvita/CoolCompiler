@@ -41,7 +41,7 @@ namespace CoolParser
             {"then", 20},
             {"while", 21},
             {"case", 22 },
-            {"easc", 23 },
+            {"esac", 23 },
             {"new", 24 },
             {"of", 25 },
             {"not", 26 },
@@ -280,7 +280,7 @@ namespace CoolParser
 
 
         }
-        public void ProT()
+        public void ProT()//possib
         {
             Debug.WriteLine("T");
             if (ReadPeek() == getTValue("Type"))
@@ -333,7 +333,7 @@ namespace CoolParser
             Debug.WriteLine("FS");
             if (checkTerminal("("))
             {
-                ProFMS();
+                ProFM();
                 checkTerminalE(")");
                 checkTerminalE(":");
                 ProT();
@@ -347,6 +347,7 @@ namespace CoolParser
             {
                 ProT();
                 ProZ();
+                checkTerminal(";");
                 ProFP();
             }
             else
@@ -389,51 +390,70 @@ namespace CoolParser
         {
 
             Debug.WriteLine("FMS");
-            try
+            if (checkTerminalN(")"))
             {
-                Debug.WriteLine("Checking if FM FMS will work");
-                ProFM();
-                ProFMS();
-            }
-            catch (MissingFieldException)
-            {
-                Debug.WriteLine("Not Exception... Change to Null");
-                Debug.WriteLine("$");
-
                 return;
-
             }
+            else
+            {
+                try
+                {
+                    Debug.WriteLine("Checking if FM FMS will work");
+                    checkTerminalE(",");
+                    ProFM();
+
+                }
+                catch (MissingFieldException)
+                {
+                    Debug.WriteLine("Not Exception... Change to Null");
+                    Debug.WriteLine("$");
+
+                    return;
+
+                }
+            }
+                
         }
         public void ProFM()
         {
             Debug.WriteLine("FM");
 
-            ProID();
-            checkTerminalE(":");
-            ProT();
-
+            if (checkTerminalN(")"))
+            {
+                return;
+            }
+           else
+            {
+                ProID();
+                checkTerminalE(":");
+                ProT();
+                ProFMS();
+            }
         }
         public void ProID()
         {
             Debug.WriteLine("ID");
-            if (checkTerminalN("ID"))
+
+            if (checkTerminal("ID"))
             {
-                var x = Program.TokenList.Peek().GetValue().ToCharArray();
-                if (char.IsLower(Program.TokenList.Peek().GetValue(), 0))
-                {
-                    Debug.WriteLine(Program.TokenList.Peek().GetValue());
-                    ReadDeque();
-                }
-                else
-                {
-                    throw new ParserException(string.Format("Error at Line {0}: Not Lowercase in Identifier",
-                        Program.TokenList.Peek().LineNum));
-                }
+
             }
             else
-            {
-                throw new MissingFieldException(string.Format("Error at Line {0}: Not an Identifier", Program.TokenList.Peek().LineNum));
-            }
+                throw new MissingFieldException(string.Format("Possible Error at Line {0}: Should be a ID?", Program.TokenList.Peek().LineNum));
+
+            //var x = Program.TokenList.Peek().GetValue().ToCharArray();
+            //if (char.IsLower(Program.TokenList.Peek().GetValue(), 0))
+            //{
+            //    Debug.WriteLine(Program.TokenList.Peek().GetValue());
+            //    ReadDeque();
+            //}
+            //else
+            //{
+            //    throw new ParserException(string.Format("Error at Line {0}: Not Lowercase in Identifier",
+            //        Program.TokenList.Peek().LineNum));
+            //}
+
+
         }
         public void ProE()
         {
@@ -648,19 +668,34 @@ namespace CoolParser
             }
             else
             {
-                if (checkTerminal("ID"))
-                {
-                    if (checkTerminal("("))
-                    {
-                        ProE();
 
-                        //  checkTerminalE(",");
+                if (checkTerminalN("ID"))
+                {
+                    Program.Token[] tmp = Program.TokenList.ToArray();
+                    if (tmp[1].tokens == getTValue("("))
+                    {
+                        ProID();
+                        checkTerminalE("(");
+                        ProE();
                         ProEP();
                         checkTerminalE(")");
+                        //if (checkTerminal("("))
+                        //{
+                        //    ProE();
+
+                        //    //  checkTerminalE(",");
+                        //    ProEP();
+                        //    checkTerminalE(")");
+                        //}
+                        //else
+                        //{
+                        //    return;
+                        //}
                     }
                     else
                     {
-                        return;
+                        ProID();
+
                     }
                 }
                 else
@@ -669,8 +704,7 @@ namespace CoolParser
                     {
 
                     }
-                    else
-                    if (checkTerminal("String"))
+                    else if (checkTerminal("String"))
                     {
 
                     }
@@ -679,6 +713,10 @@ namespace CoolParser
 
                     }
                     else if (checkTerminal("false"))
+                    {
+
+                    }
+                    else if (checkTerminal("self"))
                     {
 
                     }
@@ -705,6 +743,7 @@ namespace CoolParser
                     else if (checkTerminal("{"))
                     {
                         ProE();
+                        checkTerminalE(";");
                         ProEPS();
                         checkTerminalE("}");
                     }
@@ -805,19 +844,22 @@ namespace CoolParser
         public void ProEPS()
         {
             Debug.WriteLine("EPS");
-            try
+            if (checkTerminalN("}"))
             {
-                ProE();
-                checkTerminalE(";");
-                ProEPS();
-            }
-            catch
-            {
-
                 Debug.WriteLine("$");
 
                 return;
             }
+            else
+            {
+                
+
+                ProE();
+                checkTerminalE(";");
+                ProEPS();
+                
+            }
+          
         }
     }
 }
