@@ -1,0 +1,12 @@
+c:\users\oscar\documents\visual studio 2015\Projects\CoolParser\CoolParser\bin\Debug\result.txt
+c:\users\oscar\documents\visual studio 2015\Projects\CoolParser\CoolParser\bin\Debug\CoolParser.exe
+c:\users\oscar\documents\visual studio 2015\Projects\CoolParser\CoolParser\bin\Debug\CoolParser.pdb
+c:\users\oscar\documents\visual studio 2015\Projects\CoolParser\CoolParser\obj\Debug\CoolParser.csprojResolveAssemblyReference.cache
+c:\users\oscar\documents\visual studio 2015\Projects\CoolParser\CoolParser\obj\Debug\CoolParser.exe
+c:\users\oscar\documents\visual studio 2015\Projects\CoolParser\CoolParser\obj\Debug\CoolParser.pdb
+H:\CoolParser\CoolParser\obj\Debug\CoolParser.exe
+H:\CoolParser\CoolParser\obj\Debug\CoolParser.pdb
+H:\CoolParser\CoolParser\bin\Debug\result.txt
+H:\CoolParser\CoolParser\bin\Debug\CoolParser.exe
+H:\CoolParser\CoolParser\bin\Debug\CoolParser.pdb
+H:\CoolParser\CoolParser\obj\Debug\CoolParser.csprojResolveAssemblyReference.cache
