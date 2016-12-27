@@ -1,7 +1,6 @@
 ﻿// CoolLexer.cpp : 定义控制台应用程序的入口点。
 //
 
-#include "stdafx.h"
 #include<iostream>
 #include<fstream>
 #include<cstdio>
@@ -119,8 +118,9 @@ struct AutoMachine {
 	int Working(char *Words, AutoMachine &Key)//工作的主函数 Words为输入的函数 Key为KT字符串识别所用的trie树
 	{
 		ele *cur = root;
-		ll_b = 0;
-		int x = 0;
+		int ll_b = 0;
+		int x = 0;;
+		memset(Buffer, 0, sizeof(Buffer));
 		while (*Words != '\0' && (*Words == '\t' || *Words == ' '))
 		{
 			Words++;
@@ -158,7 +158,7 @@ struct AutoMachine {
 		}
 		while (1)
 		{
-			if (cur->next[Rfc(*Words)] == NULL) {
+			if (*Words== '\0' || cur->next[Rfc(*Words)] == NULL) {
 				if (cur == root) {
 					OUT << "#" << NUM << " ";
 					OUT << "-1";
@@ -192,7 +192,9 @@ struct AutoMachine {
 					break;
 				}
 			}
+		//	cout<<ll_b<<endl;
 			cur = cur->next[Rfc(*Words)];
+		//	cout<<ll_b<<endl;
 			Buffer[ll_b++] = *Words;//若其可能为iT标识符或KT字符串，则对其创建备份以方便进行识别
 			Words++;
 			x++;
