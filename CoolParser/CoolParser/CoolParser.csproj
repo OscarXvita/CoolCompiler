@@ -43,9 +43,12 @@
     <Compile Include="SubProgram.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="KT.txt" />
+    <Content Include="PT.txt" />
     <Content Include="result.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="syntax12270.00.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
