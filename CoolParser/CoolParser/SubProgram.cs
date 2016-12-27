@@ -367,7 +367,7 @@ namespace CoolParser
             {
                 ProF();
             }
-            catch
+            catch(MissingFieldException)
             {
                 Debug.WriteLine("$");
 
