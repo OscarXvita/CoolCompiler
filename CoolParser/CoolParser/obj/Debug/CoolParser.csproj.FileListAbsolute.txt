@@ -10,3 +10,9 @@ H:\CoolParser\CoolParser\bin\Debug\result.txt
 H:\CoolParser\CoolParser\bin\Debug\CoolParser.exe
 H:\CoolParser\CoolParser\bin\Debug\CoolParser.pdb
 H:\CoolParser\CoolParser\obj\Debug\CoolParser.csprojResolveAssemblyReference.cache
+C:\Users\Oscar\Documents\GitHub\CoolCompiler\CoolParser\CoolParser\bin\Debug\result.txt
+C:\Users\Oscar\Documents\GitHub\CoolCompiler\CoolParser\CoolParser\bin\Debug\CoolParser.exe
+C:\Users\Oscar\Documents\GitHub\CoolCompiler\CoolParser\CoolParser\bin\Debug\CoolParser.pdb
+C:\Users\Oscar\Documents\GitHub\CoolCompiler\CoolParser\CoolParser\obj\Debug\CoolParser.csprojResolveAssemblyReference.cache
+C:\Users\Oscar\Documents\GitHub\CoolCompiler\CoolParser\CoolParser\obj\Debug\CoolParser.exe
+C:\Users\Oscar\Documents\GitHub\CoolCompiler\CoolParser\CoolParser\obj\Debug\CoolParser.pdb

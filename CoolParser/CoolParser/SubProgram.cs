@@ -101,7 +101,9 @@ namespace CoolParser
             {
                 xLine = Program.TokenList.Peek().LineNum;
                 value = Program.TokenList.Peek().tokens;
+                
                 return Program.TokenList.Peek().tokens;
+
             }
             catch (InvalidOperationException e)
             {
@@ -110,6 +112,7 @@ namespace CoolParser
         }
         public int ReadDeque()
         {
+            Console.WriteLine("MATCHED TOKEN:"+ Program.TokenList.Peek().tokens+","+ Program.TokenList.Peek().GetValue());
             return Program.TokenList.Dequeue().tokens;
         }
 
@@ -124,7 +127,7 @@ namespace CoolParser
 
             if (ReadPeek() == getTValue(terminal))
             {
-                Debug.WriteLine(terminal);
+              //  Debug.WriteLine("MATCHED[N]: " + terminal);
                 //ReadDeque();
                 return true;
             }
@@ -139,7 +142,7 @@ namespace CoolParser
 
             if (ReadPeek() == getTValue(terminal))
             {
-                Debug.WriteLine(terminal);
+             //   Debug.WriteLine("MATCHED: "+terminal);
                 ReadDeque();
                 return true;
             }
@@ -153,7 +156,7 @@ namespace CoolParser
         {
             if (ReadPeek() == getTValue(terminal))
             {
-                Debug.WriteLine(terminal);
+               // Debug.WriteLine("MATCHED: " + terminal);
                 ReadDeque();
                 return true;
             }
@@ -185,7 +188,7 @@ namespace CoolParser
         }
         public void ProC()
         {
-            Debug.WriteLine("C");
+            Console.WriteLine("C");
             checkTerminalE("class");
 
             ProT();
@@ -256,7 +259,7 @@ namespace CoolParser
 
         public void ProCS()
         {
-            Debug.WriteLine("CS");
+            Console.WriteLine("CS");
             if (Program.TokenList.Count > 0)
             {
                 if (ReadPeek() == getTValue("class"))
@@ -265,7 +268,7 @@ namespace CoolParser
                 }
                 else
                 {
-                    Debug.WriteLine("ERROR");
+                    Console.WriteLine("ERROR");
                     throw new ParserException(string.Format("Error at Line {0}", Program.TokenList.Peek().LineNum));
                 }
             }
@@ -282,13 +285,13 @@ namespace CoolParser
         }
         public void ProT()//possib
         {
-            Debug.WriteLine("T");
+            Console.WriteLine("T");
             if (ReadPeek() == getTValue("Type"))
                 if (Program.TokenList.Peek().GetValue() != "")
                 {
                     if (char.IsUpper(Program.TokenList.Peek().GetValue(), 0))
                     {
-                        Debug.WriteLine(Program.TokenList.Peek().GetValue());
+                        //Debug.WriteLine(Program.TokenList.Peek().GetValue());
                         ReadDeque();
                     }
                     else
@@ -306,7 +309,7 @@ namespace CoolParser
 
         public void ProIN()
         {
-            Debug.WriteLine("IN");
+            Console.WriteLine("IN");
             if (checkTerminal("inherits"))
             {
 
@@ -323,14 +326,14 @@ namespace CoolParser
         }
         public void ProF()
         {
-            Debug.WriteLine("F");
+            Console.WriteLine("F");
             ProID();
             ProFS();
 
         }
         public void ProFS()
         {
-            Debug.WriteLine("FS");
+            Console.WriteLine("FS");
             if (checkTerminal("("))
             {
                 ProFM();
@@ -359,7 +362,7 @@ namespace CoolParser
 
         public void ProFP()//ERRIR
         {
-            Debug.WriteLine("FP");
+            Console.WriteLine("FP");
             try
             {
                 ProF();
@@ -373,7 +376,7 @@ namespace CoolParser
         }
         public void ProZ()
         {
-            Debug.WriteLine("Z");
+            Console.WriteLine("Z");
             if (checkTerminal("<-"))
             {
                 ProE();
@@ -389,7 +392,7 @@ namespace CoolParser
         public void ProFMS()
         {
 
-            Debug.WriteLine("FMS");
+            Console.WriteLine("FMS");
             if (checkTerminalN(")"))
             {
                 return;
@@ -416,7 +419,7 @@ namespace CoolParser
         }
         public void ProFM()
         {
-            Debug.WriteLine("FM");
+            Console.WriteLine("FM");
 
             if (checkTerminalN(")"))
             {
@@ -432,7 +435,7 @@ namespace CoolParser
         }
         public void ProID()
         {
-            Debug.WriteLine("ID");
+            Console.WriteLine("ID");
 
             if (checkTerminal("ID"))
             {
@@ -458,7 +461,7 @@ namespace CoolParser
         public void ProE()
         {
             Program.Token[] s = Program.TokenList.ToArray();
-            Debug.WriteLine("E");
+            Console.WriteLine("E");
             if (checkTerminalN("ID"))
                 if (s[1].tokens == getTValue("<-"))
                 {
@@ -492,7 +495,7 @@ namespace CoolParser
         public void ProG()
         {
             var temp = ReadPeek();
-            Debug.WriteLine("G");
+            Console.WriteLine("G");
             if (checkTerminal("not"))
             {
                 ProG();
@@ -506,14 +509,14 @@ namespace CoolParser
         }
         public void ProH()
         {
-            Debug.WriteLine("H");
+            Console.WriteLine("H");
             ProI();
             ProHS();
         }
 
         public void ProHS()
         {
-            Debug.WriteLine("HS");
+            Console.WriteLine("HS");
             if (checkTerminal("<="))
             {
                 ProI();
@@ -539,13 +542,13 @@ namespace CoolParser
 
         public void ProI()
         {
-            Debug.WriteLine("I");
+            Console.WriteLine("I");
             ProJ();
             ProIS();
         }
         public void ProIS()
         {
-            Debug.WriteLine("IS");
+            Console.WriteLine("IS");
             if (checkTerminal("-"))
             {
                 ProJ();
@@ -566,13 +569,13 @@ namespace CoolParser
         }
         public void ProJ()
         {
-            Debug.WriteLine("J");
+            Console.WriteLine("J");
             ProK();
             ProJS();
         }
         public void ProJS()
         {
-            Debug.WriteLine("JS");
+            Console.WriteLine("JS");
             if (checkTerminal("*"))
             {
                 ProK();
@@ -592,7 +595,7 @@ namespace CoolParser
         }
         public void ProK()
         {
-            Debug.WriteLine("K");
+            Console.WriteLine("K");
             if (checkTerminal("isvoid"))
             {
                 ProK();
@@ -606,7 +609,7 @@ namespace CoolParser
         }
         public void ProL()
         {
-            Debug.WriteLine("L");
+            Console.WriteLine("L");
             if (checkTerminal("~"))
             {
                 ProL();
@@ -619,13 +622,13 @@ namespace CoolParser
         }
         public void ProM()
         {
-            Debug.WriteLine("M");
+            Console.WriteLine("M");
             ProN();
             ProMS();
         }
         public void ProMS()
         {
-            Debug.WriteLine("MS");
+            Console.WriteLine("MS");
             if (checkTerminal("@"))
             {
                 ProT();
@@ -660,7 +663,7 @@ namespace CoolParser
         }
         public void ProN()
         {
-            Debug.WriteLine("N");
+            Console.WriteLine("N");
             if (checkTerminal("("))
             {
                 ProE();
@@ -771,11 +774,11 @@ namespace CoolParser
 
         public void ProNA()
         {
-            Debug.WriteLine("NA");
+            Console.WriteLine("NA");
         }
         public void ProCA()
         {
-            Debug.WriteLine("CA");
+            Console.WriteLine("CA");
             ProID();
             checkTerminalE(":");
             ProT();
@@ -787,7 +790,7 @@ namespace CoolParser
 
         public void ProCAS()
         {
-            Debug.WriteLine("CAS");
+            Console.WriteLine("CAS");
             if (checkTerminalN("ID"))
             {
                 ProID();
@@ -808,7 +811,7 @@ namespace CoolParser
 
         public void ProLE()
         {
-            Debug.WriteLine("LE");
+            Console.WriteLine("LE");
             if (checkTerminal(","))
             {
                 ProID();
@@ -827,7 +830,7 @@ namespace CoolParser
 
         public void ProEP()
         {
-            Debug.WriteLine("EP");
+            Console.WriteLine("EP");
             if (checkTerminal(","))
             {
                 ProE();
@@ -843,7 +846,7 @@ namespace CoolParser
 
         public void ProEPS()
         {
-            Debug.WriteLine("EPS");
+            Console.WriteLine("EPS");
             if (checkTerminalN("}"))
             {
                 Debug.WriteLine("$");

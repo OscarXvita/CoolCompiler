@@ -13,7 +13,7 @@ namespace CoolParser
     class Program
     {
        
-
+        public static Stack<Token> SemanticStack=new Stack<Token>();
         public static Queue<Token> TokenList=new Queue<Token>();
         static void Main(string[] args)
         {
