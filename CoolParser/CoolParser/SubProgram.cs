@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Diagnostics;
+using System.IO;
+using System.Reflection.Emit;
 using System.Text;
 
 namespace CoolParser
@@ -20,6 +23,8 @@ namespace CoolParser
         }
 
         public static int value;
+
+        #region DictionAry Definition
         private readonly Dictionary<string, int> _string2Token = new Dictionary<string, int>
         {
              {"ID", 0},
@@ -72,19 +77,20 @@ namespace CoolParser
              {"ERR", -3},
 
         };
-        class Node
-        {
-            public Node LeftChild { get; private set; }
-            public Node RightChild { get; private set; }
-            public char Label { get; private set; }
+        #endregion
+        //class Node
+        //{
+        //    public Node LeftChild { get; private set; }
+        //    public Node RightChild { get; private set; }
+        //    public char Label { get; private set; }
 
-            public Node(char label, Node left, Node right)
-            {
-                Label = label;
-                LeftChild = left;
-                RightChild = right;
-            }
-        }
+        //    public Node(char label, Node left, Node right)
+        //    {
+        //        Label = label;
+        //        LeftChild = left;
+        //        RightChild = right;
+        //    }
+        //}
 
         public void ProP()
         {
@@ -92,6 +98,20 @@ namespace CoolParser
             ProC();
 
             Console.WriteLine("Completed!");
+          
+           
+
+            
+            var fs = new FileStream("out.txt", FileMode.Create);
+            var sw = new StreamWriter(fs);
+            foreach (var e in quadList)
+            {
+                Console.WriteLine(quadList.IndexOf(e)+":"+e.ToString());
+                sw.WriteLine(quadList.IndexOf(e)+":"+e.ToString());
+            }
+           sw.Flush();
+            sw.Close();
+        
         }
 
         public int xLine;
@@ -115,6 +135,11 @@ namespace CoolParser
             Console.WriteLine("MATCHED TOKEN:"+ Program.TokenList.Peek().tokens+","+ Program.TokenList.Peek().GetValue());
             return Program.TokenList.Dequeue().tokens;
         }
+        public string ReadValueDeque()
+        {
+            Console.WriteLine("MATCHED TOKEN:" + Program.TokenList.Peek().tokens + "," + Program.TokenList.Peek().GetValue());
+            return Program.TokenList.Dequeue().GetValue();
+        }
 
         public int getTValue(string name)
         {
@@ -125,10 +150,37 @@ namespace CoolParser
         public bool checkTerminalN(string terminal)//Only Check, no pop
         {
 
+
+
             if (ReadPeek() == getTValue(terminal))
             {
-              //  Debug.WriteLine("MATCHED[N]: " + terminal);
-                //ReadDeque();
+
+                //switch (terminal)
+                //{
+                //    case "ID":
+                //    case "Integer":
+                //    case "string":
+                //        {
+                //            Program.SemanticStack.Push(Program.TokenList.Peek().GetValue());
+                //            break;
+                //        }
+
+                //    case "true":
+                //        {
+                //            Program.SemanticStack.Push("true");
+                //            break;
+
+                //        }
+                //    case "false":
+                //        {
+                //            Program.SemanticStack.Push("false");
+                //            break;
+
+                //        }
+
+                //    default:
+                //        break;
+                //}
                 return true;
             }
             else
@@ -142,8 +194,12 @@ namespace CoolParser
 
             if (ReadPeek() == getTValue(terminal))
             {
-             //   Debug.WriteLine("MATCHED: "+terminal);
+                //   Debug.WriteLine("MATCHED: "+terminal);
+
+
+
                 ReadDeque();
+
                 return true;
             }
             else
@@ -156,7 +212,8 @@ namespace CoolParser
         {
             if (ReadPeek() == getTValue(terminal))
             {
-               // Debug.WriteLine("MATCHED: " + terminal);
+                // Debug.WriteLine("MATCHED: " + terminal);
+               
                 ReadDeque();
                 return true;
             }
@@ -199,55 +256,7 @@ namespace CoolParser
             checkTerminalE(";");
             ProCS();
 
-            //    if (Program.TokenList.Peek().tokens == (int)strToToken.e_typeCname)
-            //    {
-            //        ProT();
-            //        if (Program.TokenList.Peek().tokens == (int)strToToken.e_in)
-            //        {
-            //            ProIN();
-            //            Program.TokenList.Dequeue();
-            //            if (Program.TokenList.Peek().tokens == (int)strToToken.e_llb)
-            //            {
-            //                ProF();
-            //                if (Program.TokenList.Peek().tokens == (int)strToToken.e_lrb)
-            //                {
-            //                    if (Program.TokenList.Peek().tokens == (int)strToToken.e_semicolon)
-            //                    {
-            //                        ProCS();
-
-            //                    }
-            //                    else
-            //                    {
-            //                        throw new ParserException(string.Format("Error at Line {0}", Program.TokenList.Peek().LineNum));
-            //                    }
-            //                }
-            //                else
-            //                {
-            //                    throw new ParserException(string.Format("Error at Line {0}", Program.TokenList.Peek().LineNum));
-            //                }
-            //            }
-            //            else
-            //            {
-            //                throw new ParserException(string.Format("Error at Line {0}", Program.TokenList.Peek().LineNum));
-            //            }
-            //        }
-            //        else
-            //        {
-            //            throw new ParserException(string.Format("Error at Line {0}", Program.TokenList.Peek().LineNum));
-            //        }
-
-            //    }
-            //    else
-            //    {
-            //        throw new ParserException(string.Format("Error at Line {0}", Program.TokenList.Peek().LineNum));
-            //    }
-            //}
-            // else
-            // {
-            //     throw new ParserException(string.Format("Error at Line {0}", Program.TokenList.Peek().LineNum));
-            // }
-
-
+          
 
         }
 
@@ -283,7 +292,8 @@ namespace CoolParser
 
 
         }
-        public void ProT()//possib
+        public string ProT()//T	->	（类型名，以大写字母开头的字符串）
+
         {
             Console.WriteLine("T");
             if (ReadPeek() == getTValue("Type"))
@@ -291,8 +301,10 @@ namespace CoolParser
                 {
                     if (char.IsUpper(Program.TokenList.Peek().GetValue(), 0))
                     {
+                        var name=Program.TokenList.Peek().GetValue();
                         //Debug.WriteLine(Program.TokenList.Peek().GetValue());
                         ReadDeque();
+                        return name;
                     }
                     else
                     {
@@ -302,7 +314,11 @@ namespace CoolParser
 
                 else
                     throw new MissingFieldException(string.Format("Possible Error at Line {0}: Should be a T?", Program.TokenList.Peek().LineNum));
-
+            else
+            {
+                throw new ParserException(string.Format("Error at Line {0}: Supposed Type Name", Program.TokenList.Peek().LineNum));
+            }
+          
         }
 
 
@@ -324,18 +340,21 @@ namespace CoolParser
                 return;
             }
         }
+
+        public string fsid;
         public void ProF()
         {
             Console.WriteLine("F");
-            ProID();
+            fsid=ProID();
             ProFS();
-
+            
         }
         public void ProFS()
         {
             Console.WriteLine("FS");
             if (checkTerminal("("))
             {
+                Generate("define_method", "__", "__", fsid);
                 ProFM();
                 checkTerminalE(")");
                 checkTerminalE(":");
@@ -344,6 +363,8 @@ namespace CoolParser
                 ProE();
                 checkTerminal("}");
                 checkTerminal(";");
+                Generate("end_define", "__", "__", "__");
+                Program.SemanticStack.Clear();
                 ProFP();
             }
             else if (checkTerminal(":"))
@@ -357,7 +378,7 @@ namespace CoolParser
             {
                 throw new ParserException(string.Format("Error at Line {0}:", Program.TokenList.Peek().LineNum));
             }
-
+           
         }
 
         public void ProFP()//ERRIR
@@ -373,6 +394,7 @@ namespace CoolParser
 
                 return;
             }
+          
         }
         public void ProZ()
         {
@@ -380,6 +402,24 @@ namespace CoolParser
             if (checkTerminal("<-"))
             {
                 ProE();
+            }
+
+            else
+            {
+                Debug.WriteLine("$");
+
+                return;
+            }
+        }
+        public void ProLEZ()
+        {
+            Console.WriteLine("Z");
+            if (checkTerminal("<-"))
+            {
+                ProE();
+                var y = Program.SemanticStack.Pop();
+                var x = Program.SemanticStack.Pop();
+                Generate("<-", y, "__", x);
             }
 
             else
@@ -433,16 +473,17 @@ namespace CoolParser
                 ProFMS();
             }
         }
-        public void ProID()
+        public string ProID()
         {
             Console.WriteLine("ID");
 
-            if (checkTerminal("ID"))
+            if (checkTerminalN("ID"))
             {
-
+                return ReadValueDeque();
             }
             else
-                throw new MissingFieldException(string.Format("Possible Error at Line {0}: Should be a ID?", Program.TokenList.Peek().LineNum));
+                throw new MissingFieldException(
+                    string.Format("Possible Error at Line {0}: Should be a ID?", Program.TokenList.Peek().LineNum));
 
             //var x = Program.TokenList.Peek().GetValue().ToCharArray();
             //if (char.IsLower(Program.TokenList.Peek().GetValue(), 0))
@@ -458,17 +499,22 @@ namespace CoolParser
 
 
         }
-        public void ProE()
+        public int ProE()
         {
             Program.Token[] s = Program.TokenList.ToArray();
             Console.WriteLine("E");
             if (checkTerminalN("ID"))
                 if (s[1].tokens == getTValue("<-"))
                 {
-                    ProID();
+                   var id= ProID();
+
                     checkTerminalE("<-");
                     ProE();
-                    return;
+                    var x = Program.SemanticStack.Pop();
+                    Generate("<-", x, "__", id);
+                    Program.SemanticStack.Push(id);
+
+                    return 1;
                 }
                 else
                 {
@@ -476,18 +522,19 @@ namespace CoolParser
                     ProG();
 
 
-
+                    return 2;
                 }
 
             else
             {
                 if (checkTerminalN(")"))
                 {
-                    return;
+                    return 0;
                 }
                 else
                 {
                     ProG();
+                    return 3;
                 }
 
             }
@@ -499,6 +546,11 @@ namespace CoolParser
             if (checkTerminal("not"))
             {
                 ProG();
+                var x = Program.SemanticStack.Pop();
+              
+                var z = getNewVari();
+                Generate("not", x, "__", z);
+                Program.SemanticStack.Push(z);
             }
             else
             {
@@ -520,16 +572,31 @@ namespace CoolParser
             if (checkTerminal("<="))
             {
                 ProI();
+                var x = Program.SemanticStack.Pop();
+                var y = Program.SemanticStack.Pop();
+                var z = getNewVari();
+                Generate("<=", x, y, z);
+                Program.SemanticStack.Push(z);
                 ProHS();
             }
             else if (checkTerminal("<"))
             {
                 ProI();
+                var x = Program.SemanticStack.Pop();
+                var y = Program.SemanticStack.Pop();
+                var z = getNewVari();
+                Generate("<", x, y, z);
+                Program.SemanticStack.Push(z);
                 ProHS();
             }
             else if (checkTerminal("="))
             {
                 ProI();
+                var x = Program.SemanticStack.Pop();
+                var y = Program.SemanticStack.Pop();
+                var z = getNewVari();
+                Generate("=", x, y, z);
+                Program.SemanticStack.Push(z);
                 ProHS();
             }
             else
@@ -552,12 +619,22 @@ namespace CoolParser
             if (checkTerminal("-"))
             {
                 ProJ();
+                var x = Program.SemanticStack.Pop();
+                var y = Program.SemanticStack.Pop();
+                var z = getNewVari();
+                Generate("-", x, y, z);
+                Program.SemanticStack.Push(z);
                 ProIS();
             }
             else
             if (checkTerminal("+"))
             {
                 ProJ();
+                var x = Program.SemanticStack.Pop();
+                var y = Program.SemanticStack.Pop();
+                var z = getNewVari();
+                Generate("+", x, y, z);
+                Program.SemanticStack.Push(z);
                 ProIS();
             }
             else
@@ -579,11 +656,21 @@ namespace CoolParser
             if (checkTerminal("*"))
             {
                 ProK();
+                var x = Program.SemanticStack.Pop();
+                var y= Program.SemanticStack.Pop();
+                var z = getNewVari();
+                Generate("*", x, y, z);
+                Program.SemanticStack.Push(z);
                 ProJS();
             }
             else if (checkTerminal("/"))
             {
                 ProK();
+                var x = Program.SemanticStack.Pop();
+                var y = Program.SemanticStack.Pop();
+                var z = getNewVari();
+                Generate("/", x, y, z);
+                Program.SemanticStack.Push(z);
                 ProJS();
             }
             else
@@ -598,8 +685,14 @@ namespace CoolParser
             Console.WriteLine("K");
             if (checkTerminal("isvoid"))
             {
-                ProK();
 
+                ProK();
+                var x = Program.SemanticStack.Pop();
+                var z = getNewVari();
+                Generate("isvoid",x,"__",z);
+                Program.SemanticStack.Push(z);
+                //Program.SemanticStack.Pop();
+                //Program.SemanticStack.Push();
             }
             else
             {
@@ -613,6 +706,10 @@ namespace CoolParser
             if (checkTerminal("~"))
             {
                 ProL();
+                var x = Program.SemanticStack.Pop();
+                var z=getNewVari();
+                Generate("~",x,"__",z);
+                Program.SemanticStack.Push(z);
             }
             else
             {
@@ -633,23 +730,43 @@ namespace CoolParser
             {
                 ProT();
                 checkTerminalE(".");
-                ProID();
+               var tempID= ProID();
                 checkTerminal("(");
-                ProE();
+                var t = ProE();
+                string SEM1="";
+                if (t != 0)
+                {
+                    SEM1 = Program.SemanticStack.Pop();
+                    Generate("add_par", SEM1, "__", "__");
+                }
+
                 ProEP();
                 checkTerminal(")");
+                var z = getNewVari();
+                Generate("call", tempID, "__", z);
+                Program.SemanticStack.Push(z);
                 ProMS();
 
             }
             else
                 if (checkTerminal("."))
             {
-                ProID();
+                var tempID = ProID();
                 checkTerminalE("(");
-                ProE();
+                var t = ProE();
+                string SEM1="";
+                if (t != 0)
+                {
+                     SEM1 = Program.SemanticStack.Pop();
+                    Generate("add_par", SEM1, "__", "__");
+                }
                 ProEP();
                 checkTerminalE(")");
                 ProMS();
+                var z = getNewVari();
+                Generate("call", tempID, "__", z);
+                Program.SemanticStack.Push(z);
+
             }
             else
             {
@@ -660,6 +777,13 @@ namespace CoolParser
 
 
 
+        }
+
+        public string getNewVari()
+        {
+            var t = "t" + GeQcount;
+            GeQcount++;
+            return t;
         }
         public void ProN()
         {
@@ -674,14 +798,26 @@ namespace CoolParser
 
                 if (checkTerminalN("ID"))
                 {
+
                     Program.Token[] tmp = Program.TokenList.ToArray();
                     if (tmp[1].tokens == getTValue("("))
                     {
-                        ProID();
+                        var tempID=ProID();
                         checkTerminalE("(");
-                        ProE();
+                        var t = ProE();
+                        if (t != 0)
+                        {
+                            var SEM1 = Program.SemanticStack.Pop();
+                            Generate("add_par", SEM1, "__", "__");
+                        }
+
+
                         ProEP();
                         checkTerminalE(")");
+                        var z = getNewVari();
+                        Generate("call",tempID , "__", z);
+                        Program.SemanticStack.Push(z);
+
                         //if (checkTerminal("("))
                         //{
                         //    ProE();
@@ -697,27 +833,32 @@ namespace CoolParser
                     }
                     else
                     {
-                        ProID();
-
+                        var tempID=  ProID();
+                        Program.SemanticStack.Push(tempID);
                     }
                 }
                 else
                 {
-                    if (checkTerminal("Integer"))
+                    if (checkTerminalN("Integer"))
                     {
-
+                        var tempID = ReadValueDeque();
+                        Program.SemanticStack.Push(tempID);
                     }
-                    else if (checkTerminal("String"))
+                    else if (checkTerminalN("String"))
                     {
-
+                        var tempID = ReadValueDeque();
+                        Program.SemanticStack.Push(tempID);
+                        // Program.SemanticStack.Push();
                     }
                     else if (checkTerminal("true"))
                     {
+                       
+                        Program.SemanticStack.Push("true");
 
                     }
                     else if (checkTerminal("false"))
                     {
-
+                        Program.SemanticStack.Push("false");
                     }
                     else if (checkTerminal("self"))
                     {
@@ -725,23 +866,49 @@ namespace CoolParser
                     }
                     else if (checkTerminal("new"))
                     {
-                        ProT();
+
+                        var tempT=ProT();//(New, Type,___,tmp1)
+                        var z = getNewVari();
+                        Generate("new",tempT,"__",z);
+                        Program.SemanticStack.Push(z);
+                        //GenQ("new",a,"_"
                     }
                     else if (checkTerminal("if"))
                     {
+                        Generate("if", "__", "__", "__");
                         ProE();
+                       var x= Program.SemanticStack.Pop();
+
+                        var lineFill=Generate("j=", x, "false", "__");//wait to fill
+
+
                         checkTerminalE("then");
                         ProE();
+                        quadList[lineFill].result = (GeqLine + 1).ToString();
+                        lineFill = Generate("j", "__", "__", "__");
+
+                        
                         checkTerminalE("else");
                         ProE();
+                        quadList[lineFill].result = (GeqLine + 1).ToString();
+
                         checkTerminalE("fi");
+                        Generate("end_if", "__", "__", "__");
                     }
                     else if (checkTerminal("while"))
                     {
+                        var temp_w=Generate("while", "__", "__", "__");
+
                         ProE();
+                        var x=Program.SemanticStack.Pop();
+                        var temp_x = Generate("j=", x, "false", "__");
+
                         checkTerminalE("loop");
                         ProE();
+                        quadList[temp_x].result = (GeqLine + 1).ToString();
                         checkTerminalE("pool");
+                        Generate("j", "__", "__",temp_w.ToString());
+                        Generate("end_while", "__", "__", "__");
                     }
                     else if (checkTerminal("{"))
                     {
@@ -752,20 +919,35 @@ namespace CoolParser
                     }
                     else if (checkTerminal("let"))
                     {
-                        ProID();
+                        Generate("enter_scope", "__", "__", "__");
+
+                        var id = ProID();
+                        Program.SemanticStack.Push(id);
                         checkTerminalE(":");
                         ProT();
-                        ProZ();
+                        ProLEZ();
+                        
+
                         ProLE();
                         checkTerminalE("in");
                         ProE();
+                        Generate("exit_scope", "__", "__", "__");
+
                     }
                     else if (checkTerminal("case"))
                     {
+                        Generate("case", "__", "__", "__");
+
                         ProE();
                         checkTerminal("of");
                         ProCA();
                         checkTerminal("esac");
+                        foreach (var line in WaitList)
+                        {
+                            quadList[line].result = GeqLine.ToString();
+                        }
+                        WaitList.Clear();
+                        Generate("exit_case", "__", "__", "__");
                     }
                 }
 
@@ -776,18 +958,28 @@ namespace CoolParser
         {
             Console.WriteLine("NA");
         }
+
+        public string tempCA;
         public void ProCA()
         {
+            tempCA= Program.SemanticStack.Pop();
             Console.WriteLine("CA");
             ProID();
             checkTerminalE(":");
-            ProT();
+            var tempT=ProT();
+            var linNum=Generate("j_checktype",tempCA,tempT,"__");//place no back
             checkTerminalE("=>");
             ProE();
+            //Fill back
+            quadList[linNum].result = (GeqLine+1).ToString();
+            var waitLine=Generate("j", "__", "__", "__");//wait to jump, return linenow
+            WaitList.Add(waitLine);
             checkTerminalE(";");
+            
             ProCAS();
-        }
 
+        }
+        public List<int> WaitList=new List<int>();
         public void ProCAS()
         {
             Console.WriteLine("CAS");
@@ -795,9 +987,15 @@ namespace CoolParser
             {
                 ProID();
                 checkTerminalE(":");
-                ProT();
+                var tempT = ProT();
+                var linNum = Generate("j_checktype", tempCA, tempT, "__");//place no back
+               
                 checkTerminalE("=>");
                 ProE();
+                //Fill back
+                quadList[linNum].result = (GeqLine + 1).ToString();
+                var waitLine = Generate("j", "__", "__", "__");//wait to jump, return linenow
+                WaitList.Add(waitLine);
                 checkTerminalE(";");
                 ProCAS();
             }
@@ -814,10 +1012,12 @@ namespace CoolParser
             Console.WriteLine("LE");
             if (checkTerminal(","))
             {
-                ProID();
+                var id=ProID();
+                Program.SemanticStack.Push(id);
                 checkTerminal(":");
                 ProT();
-                ProZ();
+                ProLEZ();
+           
                 ProLE();
             }
             else
@@ -834,6 +1034,10 @@ namespace CoolParser
             if (checkTerminal(","))
             {
                 ProE();
+
+                var SEM1 = Program.SemanticStack.Pop();
+                Generate("add_par", SEM1, "__","__");
+              
                 ProEP();
             }
             else
@@ -855,8 +1059,8 @@ namespace CoolParser
             }
             else
             {
-                
 
+                Program.SemanticStack.Pop();
                 ProE();
                 checkTerminalE(";");
                 ProEPS();
@@ -864,5 +1068,104 @@ namespace CoolParser
             }
           
         }
+
+
+        public class Quad
+        {
+            public string op;
+            public string arg1;
+            public string arg2;
+            public string result;
+
+            public  Quad(string Op, string Arg1, string Arg2, string Result)
+            {
+                this.op = Op;
+                this.arg1 = Arg1;
+                this.arg2 = Arg2;
+                this.result = Result;
+            }
+
+            public  override string  ToString()
+            {
+                return (String.Format("({0},{1},{2},{3})", op, arg1, arg2, result));
+            }
+        }
+        public static List<Quad> quadList=new List<Quad>();
+        public static int GeQcount = 0;
+        public static int GeqLine = 0;
+        public int Generate(string op, string arg1, string arg2, string result)
+        {
+            
+            var q=new Quad(op,arg1,arg2,result);
+            quadList.Add(q);
+            Debug.WriteLine(String.Format("{4}:({0},{1},{2},{3})", op, arg1, arg2, result,GeqLine));
+            GeqLine++;
+            var lineNow = GeqLine - 1;
+            return lineNow;
+        }
+        //public void Gequad(OperationType type, string op)
+        //{
+        //    var t = "t" + (++GeQcount);
+        //    switch (type)
+        //    {
+        //        case OperationType.Arith:
+        //            {
+        //                switch (op)
+        //                {
+        //                    case "isvoid":
+        //                    case "~":
+        //                        {
+                                   
+        //                            break;
+        //                    }
+        //                    case "add_par":
+        //                        {
+        //                            var SEM1 = Program.SemanticStack.Pop();
+        //                            Generate(op, SEM1, "__", "__");
+                                    
+        //                            break;
+        //                        }
+        //                    case "new":
+        //                    {
+        //                            Generate(op, SEM1, "__", t.ToString());
+        //                            Program.SemanticStack.Push(t.ToString());
+        //                            break;
+
+        //                    }
+        //                    default:
+        //                        break;
+        //                }
+                           
+        //                    //var SEM1 = Program.SemanticStack.Pop();
+        //                    //var SEM2 = Program.SemanticStack.Pop();
+
+
+                            
+                          
+                        
+        //                break;
+        //            }
+        //        case OperationType.Call:
+        //            {
+        //                break;
+
+        //            }
+        //        case OperationType.Jump:
+        //            {
+        //                break;
+        //            }
+        //    }
+
+
+        //}
+
+        public enum OperationType
+        {
+            Arith = 0,
+            Jump = 1,
+            Call = 2
+
+        }
+
     }
 }

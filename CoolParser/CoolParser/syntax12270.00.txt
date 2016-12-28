@@ -1,4 +1,5 @@
    $为空
+default_Type
 !# #!中间的部分为规定的插入的语义动作
 本文档中非终结符都以大写字母组成的单词标出 不同的符号之间以空格作为间隔
 P	->	C
@@ -10,43 +11,82 @@ IN	->	inherits T //复制T的符号表至当前类，及完成对父类符号表的复制
 	|	$//若没有指定父类，则默认父类为Object
 F	->	ID 
 		F'// 声明语句, 
-F'	->	 (FM): T { E }; FP// F'.in = method 其属于方法表 , 返回类型为T  新建立一个定义域 然后将这些变量加入至其中
+F'	->	 (FM): T { E } ; FP// F'.in = method 其属于方法表 , 返回类型为T  新建立一个定义域 然后将这些变量加入至其中
 	|	 : T Z ; FP// F'.belong_type.Add_attribute( F') if(Z.p)  T.value = Z.value : T.value = T.type.default
 FP	->	F | $
 Z	->	 <- E // Z.value = E.s
 	|	 $ //	Z.value 为默认值， 考虑另开一个变量 Z.p来表示其是否被初始化
 FM'	->	$ //FM' . width = 0;
-	|	, FM 
-FM	->	$ | ID : T FM' //添加 类型为T的 名为ID 的变量至对应函数的形参表中
+	|	， FM FM' 
+FM	->	$
+	|	ID : T FM'//添加 类型为T的 名为ID 的变量至对应函数的形参表中
 ID	->	 	(标识符,以小写字母开头的字符串)
 类型检查主要应用E 以及E向下衍生出的表达式
-E	->	ID <- E          !# ID.in = E.s  #!//输入ID时特判其后续字符 如果其后续为<-则使用这个表达式 
+E	->	ID <- E !# ID.in = E.s  #!//输入ID时特判其后续字符 如果其后续为<-则使用这个表达式 
 	|	G
 	|	$
-G	->	not G	!# 要求G'.type = Bool G.s = !G.s#!
+G	->	not G	//x=Pop(), GEQ("not", x,__ , z), push(z)//  !# 要求G'.type = Bool G.s = !G.s#!
 	|	H	!# G.s = H.s #!
 H	->	I 	!# H'.v = I.v #!
 		  H'	!# H.s = H'.s #!
-H'	->	<= I H' 
-	| 	< I H' 
-	| 	= I H' 
+
+
+
+H'	->	<= I //x=Pop(), y=Pop() , GEQ("<=", x, y, z), push(z)//
+		    H' 
+	| 	< I //x=Pop(), y=Pop() , GEQ("<", x, y, z), push(z)//
+		    H'  
+	| 	= I //x=Pop(), y=Pop() , GEQ("=", x, y, z), push(z)// 
+		   H'
 	|	$
+
+
+
 I	->	J I'
-I'	->	- J I' | + J I' | $
+I'	->	- J //x=Pop(), y=Pop() , GEQ("-", x, y, z), push(z)//
+		    I' 
+	| 	+ J //x=Pop(), y=Pop() , GEQ("+", x, y, z), push(z)//
+		    I'
+	|	 $
+----
+	ok
 J	->	K J'
-J'	->	* K J' | / K J' | $
-K	->	isvoid K | L
-L	->	~L |  M
+J'	->	* K //x=Pop(), y=Pop() , GEQ("*", x, y, z), push(z)//
+		    J' 
+	| 	/ K //x=Pop(), y=Pop() , GEQ("/", x, y, z), push(z)//
+		    J' 
+	|	 $
+
+K	->	isvoid K //x=Pop(), GEQ("isvoid", x,__ , z), push(z)// 
+	| 	L
+
+	//L ok
+
+L	->	~L //x=Pop(), GEQ("~", x,__ , z), push(z)// 
+	| 	 M
+
 M	->	N M'
-M'	->	@ T . ID ( E EP ) M'| . ID (E EP) M' |$
-N	->	( E ) | ID | integer | string | true | false | new T | ID ( E EP) | if E then E else E fi | while E loop E pool | { E ;EP' } | let ID : T Z LE in E | case E of CA esac  | self
+M'	->	@ T . ID ( E //  x=pop(),GEQ("add_par", x, __, __)  //EP ) // GEQ("call", ID, __,z) push(z)  //M'| . ID (E //  x=pop(),GEQ("add_par", x, __, __) //EP) M' //GEQ("call", ID, __,z) push(z)  //| $
+//ok//
+
+N	->	( E ) | ID // push //| integer // push // | string // push // | true // push // | false // push //
+	| 	new T  GEQ("new", T, __, z), push(z)// 
+	| ID ( E // x=pop(), GEQ("add_par", x, __, __), // EP) //  GEQ("call", ID, __,z) push(z)  // 
+	//not imp
+	| if E then E else E fi 
+	| while E loop E pool 
+	| { E;EP' } 
+	| let ID : T Z LE in E 
+	| case E of CA esac 
+	| self
 		//如果ID的后续为(则使用 N->ID (E, EP); ID的后续为其他东西 则使用 N -> ID	
 CA	->	ID : T => E ; CA'
 CA'	->	ID : T => E ; CA'
 	|	$
 LE	->	, ID : T Z LE
 	|	$
-EP	->	, E EP
+
+EP	->	, E // x=pop(), GEQ("add_par", x, __, __)  //EP ok
 	|	$
 EP'	->	E; EP'
 	|	$

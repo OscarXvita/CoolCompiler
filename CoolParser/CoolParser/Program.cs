@@ -13,7 +13,7 @@ namespace CoolParser
     class Program
     {
        
-        public static Stack<Token> SemanticStack=new Stack<Token>();
+        public static Stack<string> SemanticStack=new Stack<string>();
         public static Queue<Token> TokenList=new Queue<Token>();
         static void Main(string[] args)
         {
@@ -77,9 +77,10 @@ namespace CoolParser
             Debug.WriteLine("Line"+token.LineNum+"\tToken:"+token.tokens+"\tValue:"+token.GetValue());
             TokenList.Enqueue(token);
         }
-        
+
       
-       public class Token
+
+        public class Token
         {
             private string _value;
             private int _tokens;
@@ -117,7 +118,6 @@ namespace CoolParser
             }
             
         }
-      
     }
   
 }
