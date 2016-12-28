@@ -26,3 +26,30 @@
 
 1482892917 d:\my_college\compiler\final_project\kelukinsupport.h
 
+1482945397 source:c:\users\oscar\documents\github\coolcompiler\final_project\main.cpp
+	<iostream>
+	<cstdio>
+	<queue>
+	"syntax.h"
+
+1482945397 c:\users\oscar\documents\github\coolcompiler\final_project\syntax.h
+	<string>
+	<cstdio>
+	<stack>
+	"AST.h"
+	"KelukinSupport.h"
+
+1482945397 c:\users\oscar\documents\github\coolcompiler\final_project\ast.h
+	<iostream>
+	<cstdio>
+	<cstring>
+	<cmath>
+	<algorithm>
+	<fstream>
+	<map>
+	<vector>
+	<cstdlib>
+	<vector>
+
+1482945397 c:\users\oscar\documents\github\coolcompiler\final_project\kelukinsupport.h
+

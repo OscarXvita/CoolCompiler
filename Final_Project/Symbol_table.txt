@@ -4,37 +4,28 @@ Int		Object		4
 String		Object		256
 Bool		Object		1
 IO		Object		0
-A2I		Object		0
+Book		IO		512
+	Var_table
+	Name	Type	Begin_offset
+	author	String	256
+	title	String	0
+Article		Book		512
+	Var_table
+	Name	Type	Begin_offset
+	author	String	256
+	per_title	String	256
+	title	String	0
+BookList		IO		0
 ---------------------------
 Const_value_table:
 Value	Width
-0	4
-1	4
-10	4
-2	4
-3	4
-4	4
-5	4
-6	4
-7	4
-8	4
-9	4
 ---------------------------
 Const_string_table:
 string	Width
-""	0
-"+"	1
-"-"	1
-"0"	1
-"1"	1
-"2"	1
-"3"	1
-"4"	1
-"5"	1
-"6"	1
-"7"	1
-"8"	1
-"9"	1
+"\n"	2
+"author:     "	12
+"periodical:  "	13
+"title:      "	12
 ---------------------------
 Method_table:
 Name		Type
@@ -61,27 +52,21 @@ IO.out_int	SELF_TYPE
 	x	Int
 IO.in_string	String
 IO.in_int	Int
-A2I.c2i	Int
+Book.initBook	Book
 	parameter_table
 	Name	Type
-	char	String
-A2I.i2c	String
+	title_p	String
+	author_p	String
+Book.print	Book
+Article.initArticle	Article
 	parameter_table
 	Name	Type
-	i	Int
-A2I.a2i_aux	Int
+	title_p	String
+	author_p	String
+	per_title_p	String
+Article.print	Book
+BookList.isNil	Bool
+BookList.cons	SELF_TYPE
 	parameter_table
 	Name	Type
-	s	String
-A2I.a2i	Int
-	parameter_table
-	Name	Type
-	s	String
-A2I.i2a_aux	String
-	parameter_table
-	Name	Type
-	i	Int
-A2I.i2a	String
-	parameter_table
-	Name	Type
-	i	Int
+	hd	Book
