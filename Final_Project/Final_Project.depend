@@ -1,0 +1,28 @@
+# depslib dependency file v1.0
+1482940390 source:d:\my_college\compiler\final_project\main.cpp
+	<iostream>
+	<cstdio>
+	<queue>
+	"syntax.h"
+
+1482941805 d:\my_college\compiler\final_project\syntax.h
+	<string>
+	<cstdio>
+	<stack>
+	"AST.h"
+	"KelukinSupport.h"
+
+1482905431 d:\my_college\compiler\final_project\ast.h
+	<iostream>
+	<cstdio>
+	<cstring>
+	<cmath>
+	<algorithm>
+	<fstream>
+	<map>
+	<vector>
+	<cstdlib>
+	<vector>
+
+1482892917 d:\my_college\compiler\final_project\kelukinsupport.h
+

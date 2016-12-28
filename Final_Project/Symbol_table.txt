@@ -1,0 +1,87 @@
+Class_name	Father_class	Width
+Object		_____		0
+Int		Object		4
+String		Object		256
+Bool		Object		1
+IO		Object		0
+A2I		Object		0
+---------------------------
+Const_value_table:
+Value	Width
+0	4
+1	4
+10	4
+2	4
+3	4
+4	4
+5	4
+6	4
+7	4
+8	4
+9	4
+---------------------------
+Const_string_table:
+string	Width
+""	0
+"+"	1
+"-"	1
+"0"	1
+"1"	1
+"2"	1
+"3"	1
+"4"	1
+"5"	1
+"6"	1
+"7"	1
+"8"	1
+"9"	1
+---------------------------
+Method_table:
+Name		Type
+Object.abort	Int
+Object.type_name	String
+Object.copy	SELF_TYPE
+String.length	Int
+String.concat	String
+	parameter_table
+	Name	Type
+	s	String
+String.substr	String
+	parameter_table
+	Name	Type
+	i	Int
+	l	Int
+IO.out_string	SELF_TYPE
+	parameter_table
+	Name	Type
+	x	String
+IO.out_int	SELF_TYPE
+	parameter_table
+	Name	Type
+	x	Int
+IO.in_string	String
+IO.in_int	Int
+A2I.c2i	Int
+	parameter_table
+	Name	Type
+	char	String
+A2I.i2c	String
+	parameter_table
+	Name	Type
+	i	Int
+A2I.a2i_aux	Int
+	parameter_table
+	Name	Type
+	s	String
+A2I.a2i	Int
+	parameter_table
+	Name	Type
+	s	String
+A2I.i2a_aux	String
+	parameter_table
+	Name	Type
+	i	Int
+A2I.i2a	String
+	parameter_table
+	Name	Type
+	i	Int
