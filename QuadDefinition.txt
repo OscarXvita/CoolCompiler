@@ -1,0 +1,20 @@
+赋值语句
+1：( <-, x, _ , y)
+( <-, x, _ , y)将x的值赋值给y
+( +, x, y, z)
+( - , x, y, z)
+( * , x, y, z)
+( /, x, y, z)
+( not, x, _, z)将x取非后的值付给z
+( isvoid, x, _, y) 检查x是否为void， Bool型的结果赋值给y  用于case
+( ~, x, _, y) 将x按位取反后的结果付给y
+
+
+( j<, x, y, z) 当x<y 时 跳转至代码标号为z的位置
+( j=, x, y, z)
+( j<=, x, y, z)
+( j_check_type, x, Type, y) 若果x的类型为Type则将跳转至函数语句y当中去
+
+( return, _, _, x) 将x值作为函数的返回值
+( addpar, _, _, x) 将x值作为函数的变量之一存储到某个地方
+( call, Type.function_name, _, x) 调用某个函数，并将其返回的结果存储至x当中
